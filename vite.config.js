@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [
     vue(),
     visualizer({
-      open: true
+      open: true,
+      template: 'sunburst'
     }),
     legacy({
       targets: [
