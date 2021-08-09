@@ -2,15 +2,17 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { visualizer } from 'rollup-plugin-visualizer'
 import legacy from '@vitejs/plugin-legacy'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '/src')
+    }
+  },
   plugins: [
     vue(),
-    visualizer({
-      open: true,
-      template: 'sunburst'
-    }),
     legacy({
       targets: [
         'ie >= 11',
@@ -22,6 +24,10 @@ export default defineConfig({
         'Edge >= 15'
       ],
       additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+    }),
+    visualizer({
+      open: true,
+      template: 'sunburst'
     })
   ]
 })
